@@ -16,9 +16,13 @@ if (isset($_POST['submit_new_com'])){
 
 // suppression commentaire
     if(isset($_GET['dell_com_id'])){
-        $req = "DELETE FROM `commentaires` WHERE `commentaires`.`id` = ?";
-        $stmt = ($bdd->prepare($req));
-        $stmt->execute([$_GET['dell_com_id']]);
+        // $req = "DELETE FROM `commentaires` WHERE `commentaires`.`id` = ?";
+        // $stmt = ($bdd->prepare($req));
+        // $stmt->execute([$_GET['dell_com_id']]);
+        $dell_com_id = $_GET['dell_com_id'];
+        $bdd->query("DELETE FROM `commentaires` WHERE `commentaires`.`id` = $dell_com_id");
+
+
     }
 ?>
 
