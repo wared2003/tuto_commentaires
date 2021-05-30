@@ -13,7 +13,6 @@ if (isset($_POST['submit_new_com'])){
     }
   
 }
-
 ?>
 
 
@@ -24,6 +23,10 @@ if (isset($_POST['submit_new_com'])){
     <input type="submit" name="submit_new_com">
 </form>
 
+<!-- affichage des commentaires -->
 <?php 
-    
+    $response = $bdd->query('SELECT * FROM commentaires');
+    while($commentaire = $response->fetch()){
+        echo ('pseudo : '.$commentaire['pseudo'].'<br> content: '.$commentaire['content']).'<br> <br>';
+    }
 ?>  
