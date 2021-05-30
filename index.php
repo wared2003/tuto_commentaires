@@ -1,7 +1,8 @@
 <?php require_once 'bdd_conexion.php'; ?>
 
-<!-- ajout commentaire en bdd -->
+
 <?php 
+// ajout commentaire en bdd
 if (isset($_POST['submit_new_com'])){
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $content = htmlspecialchars($_POST['content']);
@@ -11,8 +12,14 @@ if (isset($_POST['submit_new_com'])){
         $stmt = ($bdd->prepare($req));
         $stmt->execute([$pseudo, $content]);
     }
-  
 }
+
+// suppression commentaire
+    if(isset($_GET['dell_com_id'])){
+        $req = "DELETE FROM `commentaires` WHERE `commentaires`.`id` = ?";
+        $stmt = ($bdd->prepare($req));
+        $stmt->execute([$_GET['dell_com_id']]);
+    }
 ?>
 
 
@@ -27,7 +34,6 @@ if (isset($_POST['submit_new_com'])){
 <?php 
     $response = $bdd->query('SELECT * FROM commentaires');
     while($commentaire = $response->fetch()){
-        echo ('pseudo : '.$commentaire['pseudo'].'<br> content: '.$commentaire['content'].'<br> <br>');
+        echo ('pseudo : '.$commentaire['pseudo'].'<br> content: '.$commentaire['content'].'<br><a href="index.php?dell_com_id='.$commentaire['id'].'">supprimer</a><br> <br>');
     }
 ?>  
-<a href="index.php"></a>
