@@ -27,6 +27,7 @@ if (isset($_POST['submit_new_com'])){
 <?php 
     $response = $bdd->query('SELECT * FROM commentaires');
     while($commentaire = $response->fetch()){
-        echo ('pseudo : '.$commentaire['pseudo'].'<br> content: '.$commentaire['content']).'<br> <br>';
+        echo ('pseudo : '.$commentaire['pseudo'].'<br> content: '.$commentaire['content'].'<br> <br>');
     }
 ?>  
+<a href="index.php"></a>
